@@ -29,7 +29,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProduct([FromRoute] int id)
     {
-        return Ok(await _productsService.ListProducts());
+        return Ok(await _productsService.GetProduct(id));
     }
     
     [HttpPost]
@@ -56,8 +56,9 @@ public class ProductsController : ControllerBase
     [Route("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task DeleteProduct([FromRoute] int id)
+    public async Task<ActionResult> DeleteProduct([FromRoute] int id)
     {
         await _productsService.DeleteProduct(id);
+        return NoContent();
     }
 }

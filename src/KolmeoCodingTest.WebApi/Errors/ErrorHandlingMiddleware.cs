@@ -46,7 +46,10 @@ public class ErrorHandlerMiddleware
 
                 case EntityNotFoundException e:
                     response.StatusCode = (int)HttpStatusCode.NotFound;
-                    responseModel = new ProblemDetails();
+                    responseModel = new ProblemDetails()
+                    {
+                        Title = e.Message
+                    };
                     break;
 
                 default:
