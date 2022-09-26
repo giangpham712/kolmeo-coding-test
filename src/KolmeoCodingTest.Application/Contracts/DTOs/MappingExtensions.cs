@@ -6,6 +6,11 @@ public static class MappingExtensions
 {
     public static ProductDTO ToDTO(this Product product)
     {
+        if (product == null)
+        {
+            throw new ArgumentNullException();
+        }
+        
         return new ProductDTO()
         {
             Id = product.Id,
